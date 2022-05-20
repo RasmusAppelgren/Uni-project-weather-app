@@ -16,6 +16,7 @@ function App() {
       setLocation('')
     }
     
+    
   }
 
   return (
@@ -23,6 +24,7 @@ function App() {
       <div className="search">
         <input value={location} onChange={event => setLocation(event.target.value)} type="text" placeholder="Skriv in plats" onKeyPress={searchLocation}></input>
       </div>
+      {data.name != undefined &&
       <div className="container">
         <div className="top">
           <div className="location">
@@ -34,11 +36,15 @@ function App() {
           </div>
           <div className="description">
             {data.weather ? <p className="bold">{data.weather[0].main}</p> : null}
+      
+          </div>   
+          <div className="images">
+            {data.weather ? <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}></img> : null}
             
-          </div>    
+            </div> 
         </div>
 
-        {data.name != undefined &&
+        
           <div className="bottom">
           <div className="feels">
           {data.main ? <p className="bold">{data.main.feels_like.toFixed()}</p> : null}
@@ -53,11 +59,8 @@ function App() {
             <p>Vind </p>
           </div>
         </div>
-        }
-
-
-      </div>
-      
+        </div>
+      }
 
     </div>
   );

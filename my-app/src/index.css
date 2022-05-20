@@ -47,13 +47,19 @@ code {
 .app .top {
   width: 100%;
   margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .app .description {
-  position: relative;
+  
   right: -90%;
   transform-origin: 0 0;
-  transform: rotate(270deg);
+  
+}
+.app .images {
+  position: right;
 }
 
 .app .bottom {
