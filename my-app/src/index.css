@@ -44,7 +44,7 @@ code {
   justify-content: space-between;
 }
 
-.app .top {
+.app .location {
   width: 100%;
   margin: 1rem auto;
   padding: 1rem;
@@ -58,7 +58,7 @@ code {
   transform-origin: 0 0;
   
 }
-.app .images {
+.app .icon {
   position: right;
 }
 

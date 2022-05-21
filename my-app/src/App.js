@@ -26,19 +26,19 @@ function App() {
       </div>
       {data.name != undefined &&
       <div className="container">
-        <div className="top">
-          <div className="location">
+        <div className="location">
+          
             <p>{data.name}</p>
-          </div>
-          <div className="temp">
+          
+          
             {data.main ? <h1>{data.main.temp.toFixed()} C</h1> : null}
           
-          </div>
-          <div className="description">
+          
+          
             {data.weather ? <p className="bold">{data.weather[0].main}</p> : null}
       
-          </div>   
-          <div className="images">
+            
+          <div className="icon">
             {data.weather ? <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}></img> : null}
             
             </div> 
