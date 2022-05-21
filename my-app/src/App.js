@@ -14,6 +14,9 @@ function App() {
         console.log(response.data)
         console.log(location)
       })
+      .catch((response) => {
+        alert("Hittades ej")
+      });
       setLocation('')
     }
     
