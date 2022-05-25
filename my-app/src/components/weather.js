@@ -1,25 +1,23 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import React from "react";
 
-const url = 'https://api.openweathermap.org/data/2.5/weather?q=stockholm&units=metric&APPID=76d38a6d1f52a05bab65b240fe495e3b'
+MITT DISCORD DOG :O
 
-const Weather = () => {
-    const [data, setData] = useState(null)
-
-    useEffect(() => {
-        axios.get(url).then((response) => {
+export default function Weather(props) {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${props.}&units=metric&APPID=42fdaee782fb69b77ef4995f175ebe38`
+    axios.get(url).then((response) => {
             setData(response.data)
-        }).catch((error) => {
-            console.log(error)
-        })
-    },[])
+            console.log(response.data)
+            console.log(location)
+    })
+    .catch((response) => {
+        alert("Hittades ej")
+    });
+    }
 
-    if(!data) return null
 
-    console.log(data)
-
-  return (
-    <div className="location">
+    return (
+        <li className="list-group-item">
+        <div className="location">
           <div className="icon">
             {data.weather ? <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}></img> : null}
           </div>
@@ -43,7 +41,7 @@ const Weather = () => {
             </div>
           </div> 
         </div>
-  )
+            {props.item.title}
+        </li>
+    )
 }
-
-export default Weather
