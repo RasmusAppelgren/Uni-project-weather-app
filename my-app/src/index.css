@@ -11,3 +11,87 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.app {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+}
+
+.app:before {
+  content: ' ';
+  background: url('./images/Clouds.jpeg') no-repeat center center/cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.container {
+  max-width: 700px;
+  height: 600px;
+  margin: auto;
+  padding: 0 1rem;
+  position: relative;
+  top: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.app .location {
+  display: flex;
+  width: 100%;
+  height: 25%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.app .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.app .information {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 60%;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+
+
+
+.bold {
+  font-weight: 700;
+}
+
+.app .search {
+  text-align: center;
+  padding: 1rem;
+}
+
+.app input {
+  padding: .7rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 25px;
+  border: 1px solid rgba(53, 53, 49, 0.4);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+::placeholder {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 500;
+}
