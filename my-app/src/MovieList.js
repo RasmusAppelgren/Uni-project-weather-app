@@ -5,12 +5,13 @@ import Movie from "./Movie";
 export default function MovieList() {
     const [movies, setMovies] = useState([{
         id: 1,
-        title: "Malmö"
+        title: "First movie",
+        grade: "5"
     }]);
 
     // Tar input och lägger i variabler
     const inputTitle = useRef();
-
+    const inputGrade = useRef();
    
     // Först kontrolleras input så det inte är tomt, om tomt skickas prompt
     function addItem(event){
@@ -22,15 +23,22 @@ export default function MovieList() {
             return false;
         }
     
+        if (inputGrade.current.value < "1") {
+            alert("Du måste ange ett betyg för att kunna spara filmen")
+            return false;
+        }
         
         const newId = movies.length > 0 ? movies[movies.length - 1].id + 1 : 1;
         // setMovies skickar in datan till movies
         setMovies([...movies, {
             id: newId,
-            title: inputTitle.current.value     
+            title: inputTitle.current.value,
+            grade: parseInt(inputGrade.current.value),
+     
         }]);
         // Rensar fälten efter att filmen är tillagd
         inputTitle.current.value = "";
+        inputGrade.current.value = "";
     }
     // När användaren klickar på sortera efter betyg så körs funktionen nedan.
     function sortbyGrade() {
@@ -64,7 +72,14 @@ export default function MovieList() {
         <div>
             <form onSubmit={addItem}>
             <input className="form-control" placeholder="Ange filmtitel här" ref={inputTitle} it="title"></input>
-       
+            <select ref={inputGrade} id="grade"> 
+                <option value="0">Välj betyg här...</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
             
             <input type="submit" className="btn btn-success mt-3" value="Spara film"></input>
             </form>
