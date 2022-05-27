@@ -1,5 +1,5 @@
 import React, {useState, useRef} from "react";
-import Movie from "./Movie";
+import Movie from "./Weather";
 
 
 export default function MovieList() {

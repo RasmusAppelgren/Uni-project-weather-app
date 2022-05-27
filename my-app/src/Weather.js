@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
-export default function Movie(props) {
+export default function Weather(props) {
     const [weather, setWeather] = useState()
     const [temp, setTemp] = useState()
     const [feels_like, setFeels_like] = useState()
     const [wind, setWind] = useState()
     const [humidity, setHumidity] = useState()
     const [icon, setIcon] = useState()
+    const [error, setError] = useState(null)
 
     const city = props.item.title;  
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=93f7c96ba8e7fe2b3abe5047a884432e`;  
@@ -22,17 +23,22 @@ export default function Movie(props) {
                 setWind(response.data.wind.speed)
                 setHumidity(response.data.main.humidity)
                 setIcon(response.data.weather[0].icon)
-                
               })
               .catch((response) => {
+                setError(error)
                 alert("Hittades ej")
               });
         }
         getWeather();
     }, [city]); 
+    console.log(error)
+    if (error) {
+        return (null);
+    } else { 
+    return (
 
         
-    return (
+
         <li className="list-group-item">
             {props.item.title}
             {temp}
@@ -40,5 +46,5 @@ export default function Movie(props) {
             <button className="btn btn-sm btn-danger float-end" onClick={() => {props.deleteItem(props.item.id)}}>X</button>
         </li>
     )
-}
+}}
  
