@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
 export default function Movie(props) {
     const [weather, setWeather] = useState()
+    const [temp, setTemp] = useState()
+    const [feels_like, setFeels_like] = useState()
+    const [wind, setWind] = useState()
+    const [humidity, setHumidity] = useState()
+    const [icon, setIcon] = useState()
 
     const city = props.item.title;  
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=93f7c96ba8e7fe2b3abe5047a884432e`;  
@@ -12,6 +17,12 @@ export default function Movie(props) {
         async function getWeather() {
             axios.get(url).then((response) => {
                 setWeather(response.data)
+                setTemp(response.data.main.temp)
+                setFeels_like(response.data.main.feels_like)
+                setWind(response.data.wind.speed)
+                setHumidity(response.data.main.humidity)
+                setIcon(response.data.weather[0].icon)
+                
               })
               .catch((response) => {
                 alert("Hittades ej")
@@ -20,41 +31,14 @@ export default function Movie(props) {
         getWeather();
     }, [city]); 
 
-    console.log(weather)
-    
-
-
+        
     return (
         <li className="list-group-item">
             {props.item.title}
+            {temp}
+            <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}></img>
             <button className="btn btn-sm btn-danger float-end" onClick={() => {props.deleteItem(props.item.id)}}>X</button>
         </li>
     )
 }
-    
-// components/WeatherList.js
-/*
-import React from 'react'
-import { Col, Row } from 'react-bootstrap'
-import WeatherCard from './WeatherCard'
-
-const WeatherList = ({weathers}) => {
-    return (
-        <Row>
-           {weathers.map(({dt, main, weather}) => (
-                <Col key={dt}>
-                    <WeatherCard 
-                    temp_max={main.temp_max} 
-                    temp_min={main.temp_min} 
-                    dt={dt * 1000} 
-                    main={weather[0].main} 
-                    icon={weather[0].icon} 
-                  />
-                </Col>
-            ))} 
-        </Row>
-    )
-}
-
-export default WeatherList;
-*/
+ 
