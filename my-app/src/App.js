@@ -1,6 +1,7 @@
 import React, {useState, useRef, useEffect} from "react";
 import Weather from "./Weather";
-import Movie from "./Weather";
+
+
 
 
 export default function MovieList() {
@@ -21,42 +22,39 @@ export default function MovieList() {
     }
 
     
-    const inputTitle = useRef();
-    function addItem(event){
-        
-        event.preventDefault();
-
-        if (inputTitle.current.value === "") {
-            alert("Du måste ange en plats");
-            return false;
-        }
+    const inputLocation = useRef();
     
+    function addItem(event){
+        if (event.key === 'Enter') {
+            event.preventDefault();
+
+            if (inputLocation.current.value === "") {
+                alert("Du måste ange en plats");
+                return false;
+            }
         
-        const newId = location.length > 0 ? location[location.length - 1].id + 1 : 1;
-        // setLocation skickar in datan till location
-        setLocation([...location, {
-            id: newId,
-            title: inputTitle.current.value     
-        }]);
-        
-        inputTitle.current.value = "";
+            
+            const newId = location.length > 0 ? location[location.length - 1].id + 1 : 1;
+            // setLocation skickar in datan till location
+            setLocation([...location, {
+                id: newId,
+                place: inputLocation.current.value     
+            }]);
+            
+            inputLocation.current.value = "";
+        }
     }
 
     return (
-        <div>
-            <form onSubmit={addItem}>
-            <input className="form-control" placeholder="Ange filmtitel här" ref={inputTitle} it="title"></input>
-       
+        <div className="App">
+            <div className="searchfield">
+                <input className="input" placeholder="Ange plats här" ref={inputLocation} it="place" onKeyPress={addItem}></input>
+            </div>
             
-            <input type="submit" className="btn btn-success mt-3" value="Spara film"></input>
-            </form>
-
-            <ul className="list-group">
-
-                { location.map(location => <Weather key={location.id} item={location} deleteItem={deleteItem}/>)}
-                
-     
-            </ul>
+           
+            <div className="container">
+                    { location.map(location => <Weather key={location.id} item={location} deleteItem={deleteItem}/>)}
+            </div>
         </div>
     )
 }
