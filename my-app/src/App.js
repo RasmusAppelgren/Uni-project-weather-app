@@ -4,7 +4,7 @@ import Weather from "./Weather";
 
 
 
-export default function MovieList() {
+export default function App() {
     const [location, setLocation] = useState(() => {
         const savedLocations = window.localStorage.getItem('locations');
         return savedLocations !== null
