@@ -5,17 +5,19 @@ import Weather from "./Weather";
 
 
 export default function App() {
+    // Hämtar från localstorage och sätter till current stat för location.
     const [location, setLocation] = useState(() => {
         const savedLocations = window.localStorage.getItem('locations');
         return savedLocations !== null
           ? JSON.parse(savedLocations)
           : [];
       });  ;
-
+    // Vid förändringar av location sparas dessa i localstorage.
     useEffect(() => {
         localStorage.setItem('locations', JSON.stringify(location));
     }, [location]);
 
+    // Alla ID som inte matchar ID som skickas in i funktionen läggs till i state location.
     function deleteItem(id) {
         setLocation(location.filter((item) => item.id !== id));
 
@@ -23,7 +25,7 @@ export default function App() {
 
     
     const inputLocation = useRef();
-    
+    // För att spara en plats. Genererar nytt id och sätter in plats samt ID i listan.
     function addItem(event){
         if (event.key === 'Enter') {
             event.preventDefault();

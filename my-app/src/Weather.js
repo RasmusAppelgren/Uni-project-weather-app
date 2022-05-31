@@ -9,11 +9,12 @@ export default function Weather(props) {
     const [humidity, setHumidity] = useState()
     const [icon, setIcon] = useState()
     const [error, setError] = useState()
-
+    
+    // Props från föräldern "App.js". Skickas med i API:anropet. 
     const city = props.item.place;  
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=93f7c96ba8e7fe2b3abe5047a884432e`;  
     
-
+    // Den data vi önskar sätts till aktuellt state.
     useEffect(() => {
         async function getWeather() {
             axios.get(url).then((response) => {
@@ -24,7 +25,9 @@ export default function Weather(props) {
                 setIcon(response.data.weather[0].icon)
               })
               .catch((response) => {
+                // Vid ingen träff från API:et tas platsen bort från localstorage. Sköts av föräldern.
                 props.deleteItem(props.item.id)
+                // Sätter error state till true om inget hittats.
                 setError(true)
                 
               });
@@ -32,12 +35,13 @@ export default function Weather(props) {
         getWeather();
     }, [city]); 
 
+    // Om error är true returneras inget. 
     if (error) {
         return (null)
     } else {
     return (
         <div className='location'>
-            <div>
+            <div className='weather'>
              <p className="bold">{props.item.place}</p>
                 <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`}></img>
                 <h1>{temp}°C</h1>
