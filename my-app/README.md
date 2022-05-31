@@ -1,4 +1,4 @@
-## Väderhjälpen
+# Väderhjälpen
 
 Det är applikationen är bygg för kursen "Flerplattformsapplikationer med webbtekniker".
 Vi som utvecklat är Rasmus Appelgren, William Evans och Linus Ingvarsson.
@@ -14,6 +14,6 @@ från användaren. Weather.js kommunicerar med väder API:et som erbjuds gratis 
 openweathermap.org. För att hämta data från API:et har vi valt att använda oss av
 biblioteket axios.
 
-# Vad krävs för att köra?
+## Vad krävs för att köra?
 
 För att köra igång vårat projekt behöver det skrivas lite i terminalen.
