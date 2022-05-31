@@ -3,7 +3,6 @@ import axios from 'axios'
 
 
 export default function Weather(props) {
-    const [weather, setWeather] = useState()
     const [temp, setTemp] = useState()
     const [feels_like, setFeels_like] = useState()
     const [wind, setWind] = useState()
@@ -18,7 +17,6 @@ export default function Weather(props) {
     useEffect(() => {
         async function getWeather() {
             axios.get(url).then((response) => {
-                setWeather(response.data)
                 setTemp(response.data.main.temp)
                 setFeels_like(response.data.main.feels_like)
                 setWind(response.data.wind.speed)
@@ -26,8 +24,9 @@ export default function Weather(props) {
                 setIcon(response.data.weather[0].icon)
               })
               .catch((response) => {
+                props.deleteItem(props.item.id)
                 setError(true)
-                alert("Hittades ej")
+                
               });
         }
         getWeather();
