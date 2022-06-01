@@ -56,7 +56,7 @@ export default function App() {
         <div className="App">
             <div className="top">
                 <nav className="navbar navbar-light">
-                    <img className="logo" src={logo}></img>
+                    <img className="logo" alt="weather logo" src={logo}></img>
                 </nav>
             </div>
             <div className="searchfield">
