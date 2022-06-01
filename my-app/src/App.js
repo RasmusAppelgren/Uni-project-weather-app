@@ -1,5 +1,6 @@
 import React, {useState, useRef, useEffect} from "react";
 import Weather from "./Weather";
+import logo from "./images/logo.png"
 
 
 
@@ -48,16 +49,26 @@ export default function App() {
     }
 
     return (
+       
+            
+
+        
         <div className="App">
+            <div className="top">
+                <nav className="navbar navbar-light">
+                    <img className="logo" src={logo}></img>
+                </nav>
+            </div>
             <div className="searchfield">
                 <input className="input" placeholder="Ange plats här" ref={inputLocation} it="place" onKeyPress={addItem}></input>
             </div>
             
-           
+        
             <div className="container">
                     { location.map(location => <Weather key={location.id} item={location} deleteItem={deleteItem}/>)}
             </div>
         </div>
+        
     )
 }
 
