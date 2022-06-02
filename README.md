@@ -36,3 +36,6 @@ Efter det kan du följa dessa steg.
 1. npm install
 2. npm install axios (Har du inte installerat biblioteket axios tidigare så måste du installera det nu)
 3. npm start
+
+## Lincence
+MIT License
